@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.IO;
+using static System.Console;
+using static System.IO.File;
 namespace StreamWriterReaderApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("***** Fun with StreamWriter / StreamReader *****\n");
+            WriteLine("***** Fun with StreamWriter / StreamReader *****\n");
 
             // Get a StreamWriter and write string data.
-            using (StreamWriter writer = File.CreateText("reminders.txt"))
+            using (StreamWriter writer = CreateText("reminders.txt"))
             {
                 writer.WriteLine("Don't forget Mother's Day this year...");
                 writer.WriteLine("Don't forget Father's Day this year...");
@@ -26,16 +22,16 @@ namespace StreamWriterReaderApp
                 writer.Write(writer.NewLine);
             }
 
-            Console.WriteLine("Created file and wrote some thoughts...");
+            WriteLine("Created file and wrote some thoughts...");
 
-            Console.WriteLine("Here are your thoughts:\n");
-            using (StreamReader sr = File.OpenText("reminders.txt"))
+            WriteLine("Here are your thoughts:\n");
+            using (StreamReader sr = OpenText("reminders.txt"))
             {
                 string input = null;
                 while ((input = sr.ReadLine()) != null)
-                    Console.WriteLine(input);
+                    WriteLine(input);
             }
-            Console.ReadLine();
+            ReadLine();
         }
     }
 }
